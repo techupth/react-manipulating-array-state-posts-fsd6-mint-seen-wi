@@ -47,8 +47,12 @@ body {
   border-radius: 10px;
   border: 5px solid var(--secondary-color);
   padding: 40px;
-  width: 50%;
+  width: 770px;
   margin-bottom: 30px;
+}
+
+.post-header h2 {
+  max-width: 500px;
 }
 
 .post-item .post-header {
