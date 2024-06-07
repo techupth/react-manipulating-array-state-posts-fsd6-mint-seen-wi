@@ -2,23 +2,23 @@ import { useState } from "react";
 import data from "../data";
 
 function Posts() {
-  const [numberOfLike, setNumberOfLike] = useState([]);
+  const [numberOfLike, setNumberOfLike] = useState(data);
 
   const likePost = (likeIndex) => {
     const newCountLike = [...numberOfLike];
     // console.log(newCountLike[likeIndex]);
-    newCountLike[likeIndex]
-      ? (newCountLike[likeIndex] += 1)
-      : (newCountLike[likeIndex] = 1);
+    newCountLike[likeIndex].likes
+      ? (newCountLike[likeIndex].likes += 1)
+      : (newCountLike[likeIndex].likes = 1);
 
     setNumberOfLike(newCountLike);
   };
 
   const disLikePost = (likeIndex) => {
     const newCountLike = [...numberOfLike];
-    newCountLike[likeIndex]
-      ? (newCountLike[likeIndex] -= 1)
-      : (newCountLike[likeIndex] = 0);
+    newCountLike[likeIndex].likes
+      ? (newCountLike[likeIndex].likes -= 1)
+      : (newCountLike[likeIndex].likes = 0);
 
     setNumberOfLike(newCountLike);
   };
@@ -27,7 +27,7 @@ function Posts() {
   return (
     <div className="app-wrapper">
       <h1 className="app-title">Posts</h1>
-      {data.map((post, index) => {
+      {numberOfLike.map((post, index) => {
         return (
           <div className="post-list" key={index}>
             <div className="post-item">
@@ -35,7 +35,7 @@ function Posts() {
                 <h2>{post.title}</h2>
                 <div className="post-social-media-stats">
                   <span className="stats-topic">Likes: </span>
-                  <span className="post-likes">{numberOfLike[index] || 0}</span>
+                  <span className="post-likes">{post.likes}</span>
                 </div>
               </div>
               <p className="post-content">{post.content}</p>
